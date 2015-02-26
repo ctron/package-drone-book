@@ -58,7 +58,7 @@
 	
 	<para>
 	Finally there is a <link xlink:href="https://travis-ci.org/">Travis CI</link> build. It is
-	currently only used to monitor if the build breaks. The created artifacts are not used right now. 
+	currently only used to monitor if the build breaks, the created artifacts are not used right now. 
 	</para>
 	
 </section>

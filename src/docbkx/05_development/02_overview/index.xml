@@ -5,4 +5,10 @@
 
 	<title>Architectural overview</title>
 	
+	<para>
+    This section describes the archicture of Package Drone.
+	</para>
+	
+	<xi:include href="01_core_concepts.xml"/>
+	
 </section>
