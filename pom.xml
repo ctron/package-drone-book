@@ -48,6 +48,7 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<outputDirectory>${project.build.directory}/docbkx/pdf</outputDirectory>
+							<overwrite>true</overwrite>
 							<resources>
 								<resource>
 									<directory>src/resources/common</directory>
@@ -72,6 +73,7 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<outputDirectory>${project.build.directory}/docbkx/html</outputDirectory>
+							<overwrite>true</overwrite>
 							<resources>
 								<resource>
 									<directory>src/resources/common</directory>
@@ -102,6 +104,7 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<outputDirectory>${project.build.directory}/docbkx/xhtml</outputDirectory>
+							<overwrite>true</overwrite>
 							<resources>
 								<resource>
 									<directory>src/resources/common</directory>
@@ -138,6 +141,7 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<outputDirectory>${project.build.directory}/docbkx/xhtml5</outputDirectory>
+							<overwrite>true</overwrite>
 							<resources>
 								<resource>
 									<directory>src/resources/common</directory>
@@ -174,6 +178,7 @@
 						<phase>generate-resources</phase>
 						<configuration>
 							<outputDirectory>${project.build.directory}/docbkx/epub3</outputDirectory>
+							<overwrite>true</overwrite>
 							<resources>
 								<resource>
 									<directory>src/resources/common</directory>
@@ -189,7 +194,9 @@
 								</resource>
 								<resource>
 									<directory>src/resources/epub3</directory>
-									<exclude>**/.*</exclude>
+									<excludes>
+									   <exclude>**/.*</exclude>
+									</excludes>
 								</resource>
 							</resources>
 						</configuration>
