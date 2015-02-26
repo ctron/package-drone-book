@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Introduction</title>
+	<para>
+	Package Drone is a software artifact repository system. Its main purpose is to
+	receive things which come out of a software build process, store them and provide them
+	to the next build or deployment step. Also over a longer period of time. 
+	</para>
+	
+	<para>
+	There already are a number of artifact formats and repository systems out there. The purpose
+	of Package Drone is to bring them all together in a user friendly way. And allow for
+	easy extensions of the system. Since there will always be <quote>the next thing</quote>.
+	</para>
+	
+	<para>
+	A simple example of what this could be, is a <trademark>Maven</trademark> build process
+	which generates <acronym>JAR</acronym>  files. These <acronym>JAR</acronym> files also
+	are <trademark>OSGi</trademark> bundles. The Maven build deploys these <acronym>JAR</acronym>
+	files to Package Drone using the Maven 2 repository layout and its <acronym>HTTP</acronym> upload
+	mechanism. Package Drone can then extract the OSGi and Maven metadata and store everything.
+	It can then also provide an Eclipse P2 repository layout so that Eclipse PDE based tools can
+	easily access these OSGi bundles directly from Package Drone. Also can users of Bndtools directly
+	access the same <trademark>OSGi</trademark> bundles using the <trademark>OSGi</trademark> XML Index
+	Repository format, since Package Drone supports both formats.
+	</para>
+	
+	<para>
+	The main cause why Package Drone was creates was to work with OSGi bundles. That why Package Drone
+	is also called the <quote>OSGi first repository</quote>. However Package Drone can do a lot more, like
+	creating APT repositories out of Debian package files, …
+	</para>
+	
+	<para>
+	Package Drone is open source and is released under the Eclipse Public License.
+	</para>
+	
+	<section>
+	   <title>More information</title>
+	   
+	   <para>
+        More Information about Package Drone can be found on the web.
+	   </para>
+	   
+	   <variablelist>
+	   
+	       <varlistentry>
+	           <term>Homepage</term>
+	           <listitem>
+	               <para><link xlink:href="http://packagedrone.org" /></para>
+	           </listitem>
+	       </varlistentry>
+	       
+	       <varlistentry>
+               <term>GitHub Repository</term>
+               <listitem>
+                   <para><link xlink:href="https://github.com/ctron/package-drone" /></para>
+               </listitem>
+           </varlistentry>
+           
+           <varlistentry>
+               <term>GitHub Wiki</term>
+               <listitem>
+                   <para><link xlink:href="https://github.com/ctron/package-drone/wiki" /></para>
+               </listitem>
+           </varlistentry>
+           
+           <varlistentry>
+               <term>Google+ Page</term>
+               <listitem>
+                   <para><link xlink:href="https://plus.google.com/+PackagedroneOrg" /></para>
+               </listitem>
+           </varlistentry>
+	   
+	   </variablelist>
+	   
+	</section>
+	
+	<section>
+	   <title>What it is not?</title>
+	   
+	   <para>
+	   Package Drone is open source. So you can change it in any direct you like. However
+	   it was created with a few ideas in mind. So there was a plan what it should be able to do,
+	   what it could be able to do, and what is if no interest at the moment. The following features
+	   are simply not in the scope of people working in Package Drone right now. Of course this
+	   may change in the future.
+	   </para>
+	   
+	   <para>
+	   There are some global, public repository services out there like <quote>Maven Central</quote>
+	   or maybe <quote>CPAN</quote>. Package Drone is more a software, a tool for a local development
+	   process. And not a global, public super repository service.
+	   </para>
+	</section>
+
+</chapter>

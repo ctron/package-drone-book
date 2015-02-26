@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Internal System Properties</title>
+	
+	<para>
+	This section describe the system properties which are defined by Package Drone itself.
+	</para>
+	
+	<simplesect xreflabel="package.drone.admin.announce.file.notPosix">
+	   <title>package.drone.admin.announce.file.notPosix</title>
+	   
+	   <para>
+	       Disable setting <acronym>POSIX</acronym> file permissions on the admin token file.
+	   </para>
+	   
+	   <variablelist>
+	       <varlistentry>
+	           <term>Type</term>
+	           <listitem><para>boolean</para></listitem>
+	       </varlistentry>
+	       <varlistentry>
+               <term>Default value</term>
+               <listitem><para>false</para></listitem>
+           </varlistentry>
+	   </variablelist>
+	   
+	   <para>
+	   By default the admin token file will be written so that only the Package Drone user can
+	   read this file. However this is only supported on system which support POSIX file
+	   permissions in Java. If this causes problems for you setup, then you can disable this
+	   behavior by setting the value to <code>false</code>.
+	   </para>
+	   
+	</simplesect>
+	
+</section>

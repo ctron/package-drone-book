@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<book
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+
+	version="5.0">
+
+	<title>This way up</title>
+	<subtitle>The guide to Package Drone</subtitle>
+
+	<info>
+		<copyright>
+			<year>2015</year>
+			<holder>Jens Reimann</holder>
+		</copyright>
+
+		<authorgroup>
+			<author>
+				<personname>
+					<firstname>Jens</firstname>
+					<surname>Reimann</surname>
+				</personname>
+				<affiliation>
+					<org>
+						<orgname>IBH SYSTEMS GmbH</orgname>
+					</org>
+				</affiliation>
+				<email>ctron@dentrassi.de</email>
+			</author>
+		</authorgroup>
+
+		<cover>
+			<para role="tagline">A documentation to Package Drone</para>
+			<mediaobject role="cover">
+				<imageobject condition="web">
+					<imagedata fileref="images/cover.png" />
+				</imageobject>
+				<imageobject condition="print">
+					<imagedata fileref="images/cover.eps" />
+				</imageobject>
+			</mediaobject>
+		</cover>
+
+		<legalnotice>
+			<para>
+				This work is licensed under the Creative Commons
+				Attribution-NonCommercial-ShareAlike 4.0 International License. To
+				view a copy of this license, visit
+				<link xlink:href="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>.
+			</para>
+		</legalnotice>
+	</info>
+
+	<xi:include href="01_introduction/index.xml" />
+	<xi:include href="02_installation/index.xml" />
+	<xi:include href="03_configuration/index.xml" />
+	<xi:include href="04_maintenance/index.xml" />
+	<xi:include href="05_development/index.xml" />
+
+	<appendix>
+		<title>References</title>
+		<xi:include href="aa_system_properties/index.xml" />
+	</appendix>
+
+	<xi:include href="legal.xml" />
+
+</book> 

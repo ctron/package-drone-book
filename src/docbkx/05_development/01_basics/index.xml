@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Some basics</title>
+	
+	<para>
+	Package Drone is written in Java and based on the <trademark>OSGi</trademark> framework.
+	Explaining what Java and OSGi are would go beyond the scope of this document. If you want to know
+	more about OSGi then have a look at their website: <link xlink:href="http://osgi.org/"/>.
+	</para>
+	
+	<para>
+	The source code of Package Drone is available on GitHub
+	(<link xlink:href="https://github.com/ctron/package-drone" />) and is therefore using git as
+	version control system. If you want to make changes you can either clone the source code directly
+	from GitHub and start working on it. Or you can get a GitHub account, fork the repository
+	and start working in your forked version. <quote>Forking is evil!</quote> - with git not really!
+	Once you made some interesting changes, you can issue a <quote>pull request</quote>, which notifies
+	the original repository that you have some changes ready which may be pulled into the original
+	source tree. A pull request however is just a notification that you propose a change and not a
+	guarantee that your changes gets accepted.
+	</para>
+	
+	<para>
+	Package Drone is developed using the Eclipse IDE (with PDE). PDE is the OSGi development extension
+	set for the main Eclipse IDE, so that you can develop OSGi applications.  
+	</para>
+	
+	<para>
+	There are other tools for developing OSGi based applications. However Package Drone uses this setup.
+	A main different compared to tools like the Maven Bundle Plugin are, that Eclipse PDE enables you to
+	author your OSGi specific metadata (like imports, exports, etc.). Where as the Maven Bundle Plugin
+	gets configured to create the OSGi metadata afterwards, during the build process. The cool thing using PDE
+	is, that you can star the full application directly in from the IDE, including debugging and hot code
+	replacement. There is not explict build step required.
+	</para>
+	
+	<para>
+    Of course does Package Drone needs an automated build. For this
+    <link xlink:href="https://eclipse.org/tycho/">Maven Tycho</link> is being used. Maven Tycho combines
+    Maven with Eclipse PDE and allows for a Maven controlled build setup, re-using all the Eclipse PDE
+    project settings. 
+	</para>
+	
+	<para>
+	For unit testing JUnit is used. The unit tests are executed manually from the IDE or during the
+	headless integration build with Maven Tycho.
+	</para>
+	
+	<para>
+	There is also an integration test in the project <filename>testing</filename>. It requires a local
+	Linux system and MySQL database. During the test it will create a new MySQL database instance, unzip
+	the final product archive, start a new instance of Package Drone and perform several
+	<link xlink:href="http://www.seleniumhq.org">Selenium</link> tests on it.
+	</para>
+	
+	<para>
+	Finally there is a <link xlink:href="https://travis-ci.org/">Travis CI</link> build. It is
+	currently only used to monitor if the build breaks. The created artifacts are not used right now. 
+	</para>
+	
+</section>

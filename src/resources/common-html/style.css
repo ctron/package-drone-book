@@ -1,0 +1,106 @@
+html {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+div.section > p, dl, ol, ul {
+	margin-left: 2em;
+}
+
+.funcsynopsis {
+	margin-left: 4em;
+}
+
+.informaltable {
+	margin-left: 2em;
+}
+
+.table {
+	margin-left: 2em;
+}
+
+.property {
+	font-family: Courier, Courier New, monospace; 
+}
+
+.programlisting {
+	background-color: #F4F4F4;
+	border: 1px solid #AAAAAA;
+	padding: 1em;
+	margin: 1em;
+	margin-left: 3em;
+	border-radius: 1em; 
+}
+
+span.term {
+	font-weight: bold;
+}
+
+/* table */
+
+.table-contents table {
+	background: #F0F0F0;
+	border-spacing: 0px;
+}
+
+.table-contents th {
+	background: #E0E0E0;
+	padding: .5em;
+}
+
+.table-contents td {
+	padding: .5em;
+}
+
+/* informaltable */
+
+.informaltable table {
+	background: #F0F0F0;
+	border-spacing: 0px;
+}
+
+.informaltable th {
+	background: #E0E0E0;
+	padding: .5em;
+}
+
+.informaltable td {
+	padding: .5em;
+}
+
+/* note */
+
+div.note {
+	background: #FCFCFF;
+	border-radius: 1em; 
+	padding-left: 1em;
+	padding-top: 1em;
+	padding-bottom: 0px;
+	margin: 1em;
+	border: 1px solid #AAAACC;
+}
+
+div.note tr:first-child > td:first-child {
+	padding-right: 1em;
+}
+
+/* warning */
+
+div.warning {
+	background: #FFFFF0;
+	border-radius: 1em; 
+	padding-left: 1em;
+	padding-top: 1em;
+	padding-bottom: 0px;
+	margin: 1em;
+	border: 1px solid #DDDDAA;
+}
+
+div.warning tr:first-child > td:first-child {
+	padding-right: 1em;
+}
+
+/* gui menu */
+
+span.guisubmenu, span.guimenu, span.guimenuitem {
+	background-color: #F0F0F0;
+}

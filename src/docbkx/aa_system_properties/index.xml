@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>System properties</title>
+	
+	<para>
+	System properties are standard
+	<link xlink:href="http://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">Java system properties</link>.
+	</para>
+	
+	<xi:include href="01_internal.xml"/>
+	<xi:include href="02_external.xml"/>
+	
+</section>

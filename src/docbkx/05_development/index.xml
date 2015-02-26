@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Development</title>
+	
+	<para>
+	Package Drone is an open source project. So you may download, modify and redistribute the source
+	code under certain conditions. The following chapter explains how you can do that.
+	</para>
+	
+	<xi:include href="01_basics/index.xml"/>
+	<xi:include href="02_overview/index.xml"/>
+	
+</chapter>
