@@ -8,7 +8,7 @@
 
 	version="5.0">
 
-	<title>This way up</title>
+	<title>This way up!</title>
 	<subtitle>The guide to Package Drone</subtitle>
 
 	<info>
@@ -45,6 +45,10 @@
 		</cover>
 
 		<legalnotice>
+            <para>
+            The source to this book can be found on GitHub: <link xlink:href="https://github.com/ctron/package-drone-book"/>
+            </para>
+
 			<para>
 				This work is licensed under the Creative Commons
 				Attribution-NonCommercial-ShareAlike 4.0 International License. To
@@ -52,6 +56,8 @@
 				<link xlink:href="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>.
 			</para>
 		</legalnotice>
+		
+		
 	</info>
 
 	<xi:include href="01_introduction/index.xml" />
