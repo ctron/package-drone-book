@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Development setup</title>
+	
+	<para>
+	In short, the following steps have to be performed:
+	
+	<itemizedlist>
+	
+    <listitem><para>Install Eclipse 4.4 (Luna)</para></listitem>
+    <listitem><para>Clone <link xlink:href="https://github.com/ctron/package-drone"/></para></listitem>
+    <listitem><para>Import all projects using Eclipse Git</para></listitem>
+    <listitem><para>Run <code>ant -f build.ant</code> in project runtime</para></listitem>
+    <listitem><para>Open the file <filename>runtime/runtime.target</filename></para></listitem>
+    <listitem><para>Press <guimenuitem>Set as target platform</guimenuitem> (upper right corner)</para></listitem>
+    <listitem><para>Launch <guimenuitem>Jetty</guimenuitem> from the <guimenu>Run Configurations</guimenu> menu</para></listitem>
+	
+	</itemizedlist>
+	
+	</para>
+		
+</section>

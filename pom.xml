@@ -35,6 +35,7 @@
 									<directory>src/resources/common</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>
@@ -54,12 +55,14 @@
 									<directory>src/resources/common</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/fo</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>
@@ -79,18 +82,21 @@
 									<directory>src/resources/common</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/common-html</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/html</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>
@@ -110,24 +116,28 @@
 									<directory>src/resources/common</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/common-html</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/common-web</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/xhtml</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>
@@ -147,24 +157,28 @@
 									<directory>src/resources/common</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/common-html</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/common-web</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/xhtml5</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>
@@ -184,18 +198,21 @@
 									<directory>src/resources/common</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/common-html</directory>
 									<excludes>
 										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 								<resource>
 									<directory>src/resources/epub3</directory>
 									<excludes>
 									   <exclude>**/.*</exclude>
+									   <exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>

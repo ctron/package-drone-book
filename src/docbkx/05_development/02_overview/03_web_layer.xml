@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Web Layer</title>
+	
+	<para>
+	As already mentioned, Package Drone uses Jetty as web server. However it does currently not
+	use the OSGi HTTP Service variant. For more information see also:
+	<itemizedlist>
+	   <listitem><para><link xlink:href="https://wiki.eclipse.org/Jetty/Feature/Jetty_OSGi"/></para></listitem>
+	   <listitem><para><link xlink:href="https://www.eclipse.org/jetty/documentation/current/framework-jetty-osgi.html"/></para></listitem>
+	</itemizedlist>
+	</para>
+	
+	<para>
+	There are two entry points which are currently used. The adapter servlet use the method 
+	<link xlink:href="https://wiki.eclipse.org/Jetty/Feature/Jetty_OSGi#Support_for_RFC66">described here</link>.
+	and directly provide a <filename>/WEB-INF/web.xml</filename> which defines a servlet.
+	</para>
+	
+	<para>
+	The second entry point is used by all web UI elements. A central Jetty Context is registered which
+	hosts the <link xlink:href="http://doc.packagedrone.org/javadoc/de/dentrassi/osgi/web/DispatcherServlet.html"><classname>DispatcherServlet</classname></link>,
+	which in fact dispatches request to registered
+	<link xlink:href="http://doc.packagedrone.org/javadoc/de/dentrassi/osgi/web/Controller.html">web controllers</link>.
+	</para>
+	
+	<para>
+	The web dispatching functionality is greatly inspired by the Spring WebMVC framework
+	<footnote><para>In fact the WebMVC was used in the beginnging. However, Spring and OSGi don't
+	go well together. And although this might sound strange, but Spring is not modular enough
+	for OSGi. Spring is modular, but not dynamic. So one Spring is fired up, it can hardly be re-configured
+	and does not support services coming and going like OSGi does.</para></footnote>. However it is
+	not directly compatible with it, although some class names might look like.
+	</para>
+	
+	<para>
+	The dispatcher servlet picks up all web controllers, filters and interceptors and integrates these
+	into the main servlet context. It works like a bridge between OSGi services and the JEE parts of Jetty.
+	</para>
+	
+	<variablelist>
+	   <varlistentry>
+	       <term>Web Controller</term>
+	       <listitem>
+	           <para>A web controller is a service, registered with OSGi, which provides Java methods
+	           which in fact handle incoming web requests. Each method is bound to a URL and request
+	           method (GET, POST, …). The method call can have parameters, which are bound to values
+	           coming from the URL, the HTTP request or internal processing.</para>
+	       </listitem>
+	   </varlistentry>
+	   <varlistentry>
+	       <term>Filter</term>
+	       <listitem>
+	           <para>
+	           These are JEE like Filters, which get registered with OSGi, picked up by the main web context
+	           and registered with the dispatching. Filters will be bound to all servlets in the
+	           main context.
+	           </para>
+	       </listitem>
+	   </varlistentry>
+	   <varlistentry>
+	       <term>Interceptors</term>
+	       <listitem>
+	           <para>These intercept calls to the web controllers only. But they will have access
+	           to the values which go in and out of these controllers.</para>
+	       </listitem>
+	   </varlistentry>
+	</variablelist>
+	
+	<figure xml:id="figure.web_dispatching">
+	<title>Web dispatching</title>
+	<mediaobject>
+	   <alt>Overview diagram of web dispatching</alt>
+	   <imageobject>
+	       <imagedata fileref="images/web/web_layer_1.png" format="PNG"/>
+	   </imageobject>
+	</mediaobject>
+	</figure>
+	
+	<para>
+	As seen in <xref linkend="figure.web_dispatching"/> the Jetty core service takes the Servlet
+	from <filename>Bundle A</filename>, defined by the Context path in the <filename>MANIFEST.MF</filename>
+	and the servlet definition in the <filename>WEB-INF/web.xml</filename>. And it also takes the
+	<classname>Context</classname> service instance registered on the OSGi service bus. In this case
+	<filename>Bundle B</filename> directly wired the <quote>Dispatcher Servlet</quote> to the context
+	and provides some additional mechanisms order to look up JSP resources in OSGi.
+	</para>
+	
+	<para>
+	The Dispatcher servlet however again waits for services registered with OSGi, which have the
+	<classname>@Controller</classname> annotation assigned, or are Filters or Interceptors. The default
+	dispatcher servlet is registered a the context root path. And, in this case, will forward
+	requests for <filename>/c1</filename> to the controller service in <filename>Bundle C</filename>.
+	</para>
+	
+	<para>
+	Since also an interceptor in <filename>Bundle D</filename> is registered, the request to <filename>/c1</filename>
+	will go through this interceptor. Where the requests to <quote>Servlet A</quote> will not go
+	through this interceptor.
+	</para>
+		
+</section>

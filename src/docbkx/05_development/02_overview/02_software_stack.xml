@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Software Stack</title>
+	
+	<para>
+	Package Drone is built on Java 8 and OSGi. As OSGi container
+	<application>Eclipse Equinox</application> is used.
+	</para>
+	
+	<para>
+	The embedded web server is provided by <application>Jetty</application> directly.
+	At the moment Package Drone does not use the OSGi HTTP Service mechanism, but a direct
+	Jetty instance in order to solve some issues with <acronym>JSP</acronym>.   
+	</para>
+	
+	<para>
+	For the Web UI Bootstrap 3.x is used.
+	</para>
+	
+	<para>
+	The database based persistence if provided by <application>EclipseLink</application> which is
+	embedded into OSGi using <application>Eclipse Gemini JPA</application> and
+	<application>Eclipse Gemini DBaccess</application>. DBaccess implements the OSGi specification
+	for JDBC drivers, so that these can be used as OSGi service. Gemini JPA bootstraps EclipseLink,
+	detects and activates bundles which are JPA units, and registers an EntityManagerFactory
+	for each of them as OSGi service.
+	</para>
+	
+</section>

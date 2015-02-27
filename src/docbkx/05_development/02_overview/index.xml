@@ -10,5 +10,7 @@
 	</para>
 	
 	<xi:include href="01_core_concepts.xml"/>
+	<xi:include href="02_software_stack.xml"/>
+	<xi:include href="03_web_layer.xml"/>
 	
 </section>

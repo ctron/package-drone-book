@@ -12,5 +12,8 @@
 	
 	<xi:include href="01_basics/index.xml"/>
 	<xi:include href="02_overview/index.xml"/>
+    <xi:include href="03_dev_setup/index.xml"/>
+	
+	<xi:include href="04_dev_tasks/01_web_bundle.xml"/>
 	
 </chapter>

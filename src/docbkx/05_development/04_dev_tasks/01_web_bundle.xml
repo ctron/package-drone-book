@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Creating a new web bundle</title>
+	
+	<para>
+	Most development tasks are straight forward, plain <application>Eclipse PDE</application> development.
+	However, due to the fact that the Jetty setup with JSP is a bit tricky, creating a new bundle
+	which provided a new web controller requires a few extra steps.
+	</para>
+	
+	<para>
+	First create a plain new OSGi project (<guimenuitem>Plug-in Project</guimenuitem>) and then convert the project
+	to the <quote>faceted form</quote> using <guimenuitem>Convert to Faceted Form…</guimenuitem> in the sub-menu 
+	<guimenu>Configure</guimenu> of the context menu of this project. Select to have only the <quote>Java</quote>
+	and <quote>Dynamic web project</quote> facet active. Be sure that you enable Java 8 for both the
+	Plugin project settings and the Java Facet. You can delete the <filename>WebContent</filename> directory
+	which was created. It is not used. 
+	</para>
+	
+	<note><title>WEB-INF directory</title>
+	<para>
+	There will be a second <filename>WEB-INF</filename> directory created under <filename>WebContent</filename>.
+	<emphasis>Do not</emphasis> use this directory. Jetty will ignore it. If you need a <filename>WEB-INF</filename>
+	directory, then it must be in the root of the bundle.
+	</para>
+	</note>
+	
+	<para>
+	Next edit the <filename>MANIFEST.MF</filename> and add the following attributes:
+	<programlisting><![CDATA[Eclipse-BundleShape: dir]]></programlisting>
+	This will tell Maven Tycho to tell P2 to unpack the bundle when installing. This is required so that Jetty
+	can find the JSP pages later on.
+	</para>
+	
+</section>
