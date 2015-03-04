@@ -9,4 +9,8 @@
 	For the moment see <link xlink:href="https://github.com/ctron/package-drone/wiki/Use-Cases"/>
 	</para>
 	
+	<xi:include href="01_initial/index.xml"/>
+	<xi:include href="02_provisioning/index.xml"/>
+	<xi:include href="03_backup_restore/index.xml"/>
+	
 </chapter>

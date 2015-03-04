@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Initial configuration</title>
+	
+	<para>
+	After the installation of Package Drone is has to be configured. A database link has
+	to be set and a mail server for sending out e-mail.
+	</para>
+	
+	<para>
+	As long as there is important configuration missing, most web requests to Package Drone
+	will be redirected to the setup view. The setup view should guide you through the whole
+	process of setup. The following section describe the process with a bit more detail.
+	</para>
+	
+	<para>
+	Also see the wiki page: <link xlink:href="https://github.com/ctron/package-drone/wiki/Setup" />
+	</para>
+	
+	<section>
+	   <title>Login in with admin user</title>
+	   <para>
+	   Initially Package Drone is not configured with any database. Therefore it also
+	   has no user accounts available. Instead of falling back to some publicly accessible
+	   admin mode oder having some default <code>admin / admin</code> credentials, Package Drone
+	   has a special admin user with the user name <code>admin</code> and a random
+	   access token. The admin token is either generated on each start of Package Drone or
+	   can be provided using a system property or environment variable.  The admin token
+	   is also printed out on the console during startup.
+	   </para>
+	   
+	   <para>
+	   The admin token is written the local file system, in order to allow retrieving it at
+	   a later time or for shell scripts. The default location is <filename>~/.drone-admin-token</filename>
+	   </para>
+	   
+	   <para>
+	   So the first step is to log in using <code>admin</code> and the admin token as password.
+	   </para>
+	</section>
+	
+	<section>
+	   <title>Database</title>
+	   <para>
+	       Entering the database parameters should be straight forward when you have experience
+	       with databases and <acronym>JDBC</acronym>.
+	   </para>
+	   <para>
+	       The default URL schema for MySQL is: <filename>jdbc://mysql/server:port/database</filename>.
+	   </para>
+	   
+	   <note><title>Testing database settings</title>
+	       <para>Testing the database settings currently forwards you to a result page. Simply
+	       click the <guibutton>Back</guibutton> button of your web broweser to go back.</para>
+	   </note>
+	   
+	   <note><title>Wrong database settings</title>
+	       <para>Even if the database settings don't work. They are stored when you
+	       press the submit button.</para>
+	   </note>
+	</section>
+	
+	<section>
+	   <title>Mail server</title>
+	   <para>
+	       Package Drone needs a mail server for the user registration process. The 
+	       mail server must be a server capable of SMTP. So it is not possible to
+	       use a <quote>maildrop</quote> setup.
+	   </para>
+	</section>
+	
+	<section>
+	   <title>Restore configuration</title>
+	   <para>
+	       Instead of manually entering all the data, it is also possible to restore a
+	       previously generated configuration using the <quote>restore</quote> link, after you
+	       logged in as admin. 
+	   </para>
+	   <para>
+	       Also seet <xref linkend="backup_and_restore"/>
+	   </para>
+	</section>
+	
+</section>
