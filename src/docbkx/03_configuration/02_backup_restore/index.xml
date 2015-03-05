@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+	xml:id="backup_and_restore"
+	>
+
+	<title>Backup and restore</title>
+	
+	<para>
+    The following sections describe the different areas of Package Drone which
+    should be backed up and how they can be restored.
+	</para>
+	
+	<section xml:id="sys_settings">
+	   <title>System settings</title>
+	   
+	   <para>
+	   These settings contain the information about which database to use and
+	   the configuration of the mail server. It <emphasis>does not</emphasis>
+	   contain the user information, the channel configuration or anything else
+	   from the database.
+	   </para>
+	   
+	   <para>
+	   Technically this is all configuration information stored in the
+	   <acronym>OSGi</acronym> configuration administrator.
+	   </para>
+	   
+	   <para>
+	   In order to back up these settings go to <guimenu>System</guimenu> <guimenuitem>Backup</guimenuitem>
+	   and click on the <guibutton>Export</guibutton> button. This will start the export
+	   trigger the download of a ZIP file containing all information. The ZIP file can later
+	   be restored. 
+	   </para>
+	   
+	   <para>
+	   For restoring the data, again go to <guimenu>System</guimenu> <guimenuitem>Backup</guimenuitem>
+	   and select the file to import in the <guilabel>Import configuration</guilabel>
+	   section. Start the import process by pressing the <guibutton>Import</guibutton> button.
+	   </para>
+	   
+	   <section xml:id="sys_settings_format">
+           <title>File format of system configuration</title>
+           
+           <para>
+           The file is an XML file with the root element <filename>configuration</filename>,
+           the <filename>version</filename> attribute must have the value <code>1</code>.
+           </para>
+           
+           <para>
+           The children are elements with the name <filename>entry</filename>. Each defining
+           an OSGi configuration admin object. Either the <filename>pid</filename> attribute
+           or the <filename>factoryPid</filename> attribute has to be set to the service PID
+           or the factory PID that this element should be created for.
+           </para>
+           
+           <para>
+           Each configuration element contains one or more <filename>property</filename>
+           element with the attributes <filename>key</filename>, <filename>type</filename>
+           and the value as text content.
+           </para>
+           
+           <para>
+           The <filename>type</filename> attribute contains the Java class name which
+           of the value.
+           </para>
+           
+           <example>
+               <title>Example system settings file</title>
+               <programlisting language="xml"><xi:include href="cfg.xml" parse="text"/></programlisting>
+           </example>
+       </section>
+	   
+	</section>
+	
+	<section>
+	   <title>System data</title>
+	   
+	   <para>
+	   All data like artifacts, the artifact binary data, users, deploy keys, all this is
+	   stored in the database that is configured for the Package Drone instance.
+	   At the moment of writing (Version 0.2.4) there is no backup mechanism for this data.
+	   But since it is stored in a MySQL database, you can and should use
+	   the mechanisms provided by MySQL for backup up your database.
+	   </para>
+	   
+	   <tip>
+	       <title>Database backup</title>
+	       <para>
+	       If you have a backup of your database, then you have the necessary data
+	       you need to re-create an instance of Package Drone.
+	       </para>
+	   </tip>
+	   <para>test</para>
+	</section>
+	
+	
+	
+</section>

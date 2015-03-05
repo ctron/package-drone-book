@@ -10,7 +10,7 @@
 	</para>
 	
 	<xi:include href="01_initial/index.xml"/>
-	<xi:include href="02_provisioning/index.xml"/>
-	<xi:include href="03_backup_restore/index.xml"/>
+	<xi:include href="02_backup_restore/index.xml"/>
+	<xi:include href="03_provisioning/index.xml"/>
 	
 </chapter>

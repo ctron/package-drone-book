@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration version="1">
+  <entry pid="de.dentrassi.pm.mail.service.default">
+    <property key="from" type="java.lang.String">drone@packagedrone.org</property>
+    <property key="prefix" type="java.lang.String">[Package Drone]</property>
+    <property key="properties.mail.smtp.host" type="java.lang.String">localhost</property>
+    <property key="properties.mail.transport.protocol" type="java.lang.String">smtp</property>
+  </entry>
+  <entry pid="package.drone.database">
+    <property key="javax.persistence.jdbc.driver" type="java.lang.String">com.mysql.jdbc.Driver</property>
+    <property key="javax.persistence.jdbc.password" type="java.lang.String">pwd</property>
+    <property key="javax.persistence.jdbc.url" type="java.lang.String">jdbc:mysql://localhost/drone</property>
+    <property key="javax.persistence.jdbc.user" type="java.lang.String">user</property>
+  </entry>
+</configuration>

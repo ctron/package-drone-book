@@ -20,7 +20,7 @@
 	Also see the wiki page: <link xlink:href="https://github.com/ctron/package-drone/wiki/Setup" />
 	</para>
 	
-	<section>
+	<section xml:id="cfg_admin_user">
 	   <title>Login in with admin user</title>
 	   <para>
 	   Initially Package Drone is not configured with any database. Therefore it also

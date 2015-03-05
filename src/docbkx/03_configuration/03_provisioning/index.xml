@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+	<title>Provisioning</title>
+	
+	<para>
+    It is possible to import the system configuration of Package Drone directly
+    from the command line. Package Drone provides a URL which can
+    receive the <filename>configurations.xml</filename> file, containing the
+    system settings (see also <xref linkend="sys_settings"/>), and apply it. A second
+    URL allows to also perform and database schema creating or upgrade at the same time.
+	</para>
+	
+	<para>
+	Also see <xref linkend="sys_settings_format" /> for more information about the file
+	format used for provisioning.
+	</para>
+	
+	<section>
+	   <title>URL endpoint</title>
+	   
+	   <para>
+       The URL for the provisioning process is <filename>http://localhost:8080/system/backup/provision</filename> and
+       the URL for provisioning and schema update is
+       <filename>http://localhost:8080/system/backup/provisionWithSchema</filename>.
+       </para>
+        
+       <para>
+       The request expects the <filename>configurations.xml</filename> file content as
+       POST data.
+       </para>
+    
+	</section>
+	
+	<section>
+	   <title>Authentication</title>
+	   
+	   <para>
+	   It is necessary to authenticate when applying the configuration. Even if it is the
+	   initial configuration. For this it is necessary to use the default admin user
+	   (also see <xref linkend="cfg_admin_user"/>).
+	   </para>
+	   
+	   <para>
+	   The authentication is done using <quote>HTTP basic authentication</quote>.
+	   </para>
+	</section>
+	
+	<section>
+	   <title>Examples</title>
+	   
+	   <para>
+	   The following examples assume you have a valid configuration file
+	   named <filename>cfg.xml</filename> in your local directory and that your
+	   admin token is <code>abcdef</code>.
+	   </para>
+	   
+	   <para>
+	   Using the command line tool <command>wget</command> the configuration can
+	   be imported by executing:
+	   
+	   <programlisting>wget --http-user=admin --http-password=abcdef --post-file cfg.xml http://localhost:8080/system/backup/provision</programlisting>
+	   
+	   </para>
+	   
+	   <para>
+	   And by executing the following command, it will also create the 
+       database schema if the configuration was successfully applied:
+       
+       <programlisting>wget --http-user=admin --http-password=abcdef --post-file cfg.xml http://localhost:8080/system/backup/provisionWithSchema</programlisting>
+       
+	   </para>
+	</section>
+	
+</section>
