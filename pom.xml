@@ -92,6 +92,13 @@
 										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
+                                <resource>
+                                    <directory>src/resources/common-web</directory>
+                                    <excludes>
+                                        <exclude>**/.*</exclude>
+                                        <exclude>**/*.odg</exclude>
+                                    </excludes>
+                                </resource>
 								<resource>
 									<directory>src/resources/html</directory>
 									<excludes>
