@@ -11,4 +11,26 @@
 	This section is about the <productname>OSGi</productname> R5 XML index repository adapter.
 	</para>
 	
+	<para>
+	This adapter provides and XML index file in the format specified by the
+	OSGi Release 5 Enterprise specification, section 132.5.
+	</para>
+	
+    <para>
+        The base entry point for this adapter is <uri>http://localhost:8080/r5</uri>. The first
+        path parameter is the channel ID or name. So in order to install from the channel <filename>mtest1</filename>
+        use the following URI:
+        <screen>
+        http://localhost:8080/r5/mtest1
+        </screen>
+    </para>
+	
+	<note>
+	   <title>Channel aspects</title>
+	   <para>
+	       For this adapter to work it needs OSGi metadata, which is created by the
+	       <quote>OSGi</quote> channel aspect.
+	   </para>
+	</note>
+	
 </section>

@@ -8,7 +8,35 @@
 	<title>P2 repository adapter</title>
 	
 	<para>
-	This section is about the <productname>Eclipse P2</productname> repository adapter.
+	   The Eclipse P2 repository adapter allows one to consume OSGi artifacts from
+	   Package Drone using the P2 repository system (see also <link xlink:href="https://eclipse.org/equinox/p2/" />). 
 	</para>
+	
+	<note>
+	   <title>Channel aspects</title>
+	   <para>
+	       For this repository adapter to work the channel needs P2 metadata. This can either
+	       be uploaded by a Maven Tycho build, or can be created on the fly by Package Drone
+	       through adding the <quote>OSGi</quote> and <quote>P2 Metadata</quote> channel aspect.
+	   </para>
+	</note>
+	
+    <para>
+	    The base entry point for this adapter is <uri>http://localhost:8080/p2</uri>. The first
+	    path parameter is the channel ID or name. So in order to install from the channel <filename>mtest1</filename>
+	    use the following URI:
+	    <screen>
+	    http://localhost:8080/p2/mtest1
+	    </screen>
+    </para>
+    
+    <note>
+        <title>P2 installation dialog</title>
+        <para>
+            Although the P2 system can handle bundle only installs, the P2 installation dialog and target platform editor cannot.
+            These require at least a feature or category. If the P2 metadata is created by Package Drone is is
+            possible to create virtual features and categories. 
+        </para>
+    </note>
 	
 </section>

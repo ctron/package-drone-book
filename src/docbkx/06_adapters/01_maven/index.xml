@@ -8,7 +8,30 @@
 	<title>Maven repository adapter</title>
 	
 	<para>
-	This section is about the <productname>Maven</productname> repository adapter.
+	   The maven repository adapter allows to deploy to Package Drone using the
+	   default <command>mvn deploy</command> command and consume artifacts as maven 2 repository.
+	</para>
+	
+	<note>
+       <title>Consuming with maven</title>
+       <para>
+           Referencing a Package Drone channel as maven repository in order to use the artifacts
+           in a build (consume them) it is required to add the <quote>Maven repository</quote>
+           channel aspect to this channel.
+       </para>
+    </note>
+	
+	<para>
+	The base entry point for this adapter is <uri>http://localhost:8080/maven</uri>. The first
+	path parameter is the channel ID or name. So in order to deploy to the channel <filename>mtest1</filename>
+    using the system property <envar>altDeploymentRepository</envar> use:
+    <screen>
+    mvn deloy -DaltDeploymentRepository=pdrone::default::http://deploy:deploy-key@localhost:8080/maven/mtest1
+    </screen>
+	</para>
+	
+	<para>
+	The deploy key as has to be created and assigned to a channel first.
 	</para>
 	
 </section>
