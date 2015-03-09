@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+	xml:id="repository_adapters"
+	>
+
+	<title>Repository adapters</title>
+	
+	<para>
+    Package Drone allows access to its data not only using the web user interface, but
+    also through different adapters. Each adapter provides a specific way of reading
+    or writing to channels and artifacts. Depending on the adapters they may support
+    only reading, only writing or both. Some adapters also require some additional
+    configuration of the channels through channel aspects.
+	</para>
+	
+	<xi:include href="01_maven/index.xml"/>
+	<xi:include href="02_p2/index.xml"/>
+	<xi:include href="03_r5/index.xml"/>
+	<xi:include href="04_unzip/index.xml"/>
+	
+</chapter>

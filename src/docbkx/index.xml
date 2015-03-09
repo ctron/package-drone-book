@@ -65,6 +65,7 @@
 	<xi:include href="03_configuration/index.xml" />
 	<xi:include href="04_maintenance/index.xml" />
 	<xi:include href="05_development/index.xml" />
+	<xi:include href="06_adapters/index.xml" />
 
 	<appendix>
 		<title>References</title>

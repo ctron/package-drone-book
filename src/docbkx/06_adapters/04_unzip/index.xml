@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+	xml:id="unzip_adapter"
+	>
+
+	<title>Unzip repository adapter</title>
+	
+	<para>
+	The unzip adapter will locate an artifact by one of several built in rules, including
+	the parameters provided in the URL and then extract the requested file from inside the
+	ZIP file, which is the artifact. 
+	</para>
+	
+	<note>
+	<title>ZIP File</title>
+	<para>
+	   This adapter only works on ZIP files. Some locator rules automatically filter out
+	   anything which is not a ZIP file.
+    </para>
+	</note>
+	
+	<para>
+	   The base entry point to the unzip adapter is <uri>http://localhost:8080/unzip</uri>.
+	   The next element in the path must always be the <quote>locator type</quote>.
+	   Everything after the locator type is specific to the locator implementation. However
+	   the scheme should always follow the basic pattern of
+	   <uri><![CDATA[http://localhost:8080/unzip/<locator>/param1/param2/path/to/file]]></uri>.
+	   So after the type comes the parameters specific to the type, following the be deep link
+	   inside the ZIP file. This allows to easily build related URLs to the original path and
+	   allows for relative linking between elements inside the ZIP file. This is required
+	   for directly accessing a zipped P2 repository.
+	</para>
+	
+	<note>
+	   <title>URL samples</title>
+	   <para>
+	   The following URL samples will skip the base prefix <uri>http://localhost:8080/unzip</uri>. 
+	   Parameters inside the URL will written in agle brackets (e.g. <code><![CDATA[<param1> ... <param2>]]></code>).
+	   Unless otherwise noted the suffix <filename>/path/to/file</filename> always
+	   refers to the actual deep link inside the ZIP file.
+	   </para>
+	</note>
+	
+	<para>
+	   Also see <link xlink:href="https://github.com/ctron/package-drone/wiki/Unzip-Adapter"/> in the GitHub wiki.
+	</para>
+	
+	<section xml:id="ra_unzip_artifact">
+	   <title>By artifact locator</title>
+	   <para>
+	       This locator will only retrieve the specified artifact using the artifact ID. 
+	   </para>
+	   <para>
+	   The full URL scheme is <uri><![CDATA[/artifact/<artifactId>/path/to/file]]></uri>
+	   </para>
+	</section>
+	
+	<section xml:id="ra_unzip_newest">
+	   <title>Newest locator</title>
+	   <para>
+	       The newest locator will simply look for the newest artifact in a channel.
+	   </para>
+	   <para>
+        The full URL scheme is <uri><![CDATA[/newest/<channelIdOrName>/path/to/file]]></uri>
+       </para>
+	</section>
+	
+    <section xml:id="ra_unzip_newest_zip">
+       <title>Newest ZIP locator</title>
+       <para>
+           The newest ZIP locator will simply look for the newest artifact in a channel which is a ZIP file.
+       </para>
+       <para>
+        The full URL scheme is <uri><![CDATA[/newestZip/<channelIdOrName>/path/to/file]]></uri>
+       </para>
+    </section>
+    
+    <section xml:id="ra_unzip_newest_name">
+       <title>Newest by name locator</title>
+       <para>
+           This locator will search a channel for the newest artifact matching the provided name.
+       </para>
+       <para>
+           The full URL scheme is <uri><![CDATA[/newestByName/<channelIdOrName>/<name>/path/to/file]]></uri>
+       </para>
+    </section>
+    
+    <section xml:id="ra_unzip_maven">
+       <title>Maven locator</title>
+       <para>
+           This locator uses maven specific metadata and has a few sub types of operation.
+       </para>
+       <para>
+           The base URL scheme is <uri><![CDATA[/maven/<subType>/<channelIdOrName>]]></uri>
+       </para>
+       
+       <note>
+        <title>Maven meta data</title>
+        <para>
+            This locator requires maven metadata, which will only be present at the moment
+            if the artifacts where deploy using the maven repository adapter and <command>mvn deploy</command>.
+        </para>
+       </note>
+       
+       <section xml:id="ra_unzip_maven_latest">
+            <title>The latest maven artifact</title>
+            <para>
+                This sub type will use the latest ZIP type artifact based on <quote>Group ID</quote> and <quote>Artifact ID</quote>.
+                However it will not find any snapshot versions.
+            </para>
+            <para>
+                The full URL scheme is <uri><![CDATA[/maven/latest/<channelIdOrName>/<groupId>/<artifactId>/path/to/file]]></uri>
+            </para>
+       </section>
+       
+       <section xml:id="ra_unzip_maven_latest_snapshot">
+            <title>The latest snapshot maven artifact</title>
+            <para>
+                This sub type will use the latest ZIP type artifact based on <quote>Group ID</quote> and <quote>Artifact ID</quote>.
+                It will not find any release versions.
+            </para>
+            <para>
+                The full URL scheme is <uri><![CDATA[/maven/latest-SNAPSHOT/<channelIdOrName>/<groupId>/<artifactId>/path/to/file]]></uri>
+            </para>
+       </section>
+       
+       <section xml:id="ra_unzip_maven_perfect">
+            <title>The perfect match maven artifact</title>
+            <para>
+                This sub type will search for the artifact with the perfect matching version and matching group id and artifact id. This can either be a release, snapshot
+                or specific snapshot version. If there are several matching versions in the same channel, then the highest ranking according to maven will
+                be used.
+            </para>
+            <para>
+                The full URL scheme is <uri><![CDATA[/maven/perfect/<channelIdOrName>/<groupId>/<artifactId>/<version>/path/to/file]]></uri>
+            </para>
+       </section>
+       
+       <section xml:id="ra_unzip_maven_prefix">
+            <title>The version prefix match maven artifact</title>
+            
+            <para>
+                This sub type will scan for a maven artifact with matching group id, artifact id and version prefix.
+                If there are several matching versions in the same channel, then the highest ranking according to maven will
+                be used.
+            </para>
+            <para>
+                The full URL scheme is <uri><![CDATA[/maven/prefixed/<channelIdOrName>/<groupId>/<artifactId>/<versionPrefix>/path/to/file]]></uri>
+            </para>
+            
+            <para>
+            The version prefix is a string like <code>1.2.x</code>, <code>1.x</code> or <code>1.x-SNAPSHOT</code>.
+            If the version prefix ends with <code>-SNAPSHOT</code> then only snapshot versions will be considered.
+            </para>
+            
+            <para>
+            The version prefix string is scanned for the first occurrence of <quote>x</quote>, which marks the end of the prefix.
+            In order for an artifact to match, the start of artifact version must match the specified prefix. See the following examples: 
+            </para>
+            
+            <informaltable>
+                <tgroup cols="3">
+                    <thead>
+                        <row>
+                            <entry>Prefix in URL</entry>
+                            <entry>Prefix for match</entry>
+                            <entry>Snapshots?</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>1.0.x</entry><entry>1.0.</entry><entry>no</entry>
+                        </row>
+                        <row>
+                            <entry>1.2.x</entry><entry>1.2.</entry><entry>no</entry>
+                        </row>
+                        <row>
+                            <entry>1.x</entry><entry>1.</entry><entry>no</entry>
+                        </row>
+                        <row>
+                            <entry>1.x.x</entry><entry>1.</entry><entry>no</entry>
+                        </row>
+                        <row>
+                            <entry>1.x.4</entry><entry>1.</entry><entry>no</entry>
+                        </row>
+                        <row>
+                            <entry>1.2.x-SNAPSHOT</entry><entry>1.2.</entry><entry>yes</entry>
+                        </row>
+                        <row>
+                            <entry>1.x-SNAPSHOT</entry><entry>1.</entry><entry>yes</entry>
+                        </row>
+                        <row>
+                            <entry>1.2x</entry><entry>1.2</entry><entry>yes</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </informaltable>
+            
+            <section>
+                <title>Examples</title>
+                
+                <para>
+                Assuming the channel has the alias name <quote>m1</quote> and contains the following artifacts, deployed
+                using the Maven 2 adapter.
+                </para>
+                
+                <informaltable>
+                    <tgroup cols="4">
+                        <thead>
+                            <row>
+                                <entry>Group ID</entry>
+                                <entry>Artifact ID</entry>
+                                <entry>Version</entry>
+                                <entry>Snapshot Version</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            
+                            <row><entry>test</entry><entry>art1</entry><entry>1.0.0-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>1.0.0</entry><entry></entry></row>
+                                
+                            <row><entry>test</entry><entry>art1</entry><entry>1.1.0-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>1.1.0-RC1</entry><entry></entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>1.1.0</entry><entry></entry></row>
+                                
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.0-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.0-SNAPSHOT</entry><entry>20150103.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.0-SNAPSHOT</entry><entry>20150104.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.0-RC1</entry><entry></entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.0-RC2</entry><entry></entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.0</entry><entry></entry></row>
+                                
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.1-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.0.1</entry><entry></entry></row>
+                                
+                            <row><entry>test</entry><entry>art1</entry><entry>2.1.0-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.1.0-SNAPSHOT</entry><entry>20150103.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.1.0-SNAPSHOT</entry><entry>20150104.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.1.0-RC1</entry><entry></entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.1.0-RC2</entry><entry></entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>2.1.0</entry><entry></entry></row>
+                                
+                            <row><entry>test</entry><entry>art1</entry><entry>3.0.0-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+                            <row><entry>test</entry><entry>art1</entry><entry>3.1.0-SNAPSHOT</entry><entry>20150102.101010-1</entry></row>
+
+                        </tbody>
+                    </tgroup>
+                </informaltable>
+                
+                <para>
+                The following table shows a few examples
+                </para>
+                
+                <informaltable>
+                    <tgroup cols="3">
+                    
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="2*"/>
+                        <colspec colwidth="2*"/>
+                    
+                        <thead>
+                            <row>
+                                <entry>Task</entry>
+                                <entry>URL</entry>
+                                <entry>Result</entry>
+                            </row>
+                        </thead>
+                        
+                        <tbody>
+                            
+                            <row>
+                                <entry>Latest release</entry>
+                                <entry><uri>/latest/m1/test/art1/path/to/file</uri></entry>
+                                <entry><filename>test/art1-2.1.0</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Latest snapshot</entry>
+                                <entry><uri>/latest-SNAPSHOT/m1/test/art1/path/to/file</uri></entry>
+                                <entry><filename>test/art1-3.0.0-20150102.101010-1</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Latest 2.0 release</entry>
+                                <entry><uri>/prefixed/m1/test/art1/2.0.x/path/to/file</uri></entry>
+                                <entry><filename>test/art1-2.0.1</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Latest 2.x release</entry>
+                                <entry><uri>/prefixed/m1/test/art1/2.x/path/to/file</uri></entry>
+                                <entry><filename>test/art1-2.1.0</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Latest 3.x snapshot</entry>
+                                <entry><uri>/prefixed/m1/test/art1/3.x-SNAPSHOT/path/to/file</uri></entry>
+                                <entry><filename>test/art1-3.1.0-20150102.101010-1</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Specific version 1.1.0-RC1</entry>
+                                <entry><uri>/perfect/m1/test/art1/1.1.0-RC1/path/to/file</uri></entry>
+                                <entry><filename>test/art1-1.1.0-RC1</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Specific version 2.0.0-SNAPSHOT</entry>
+                                <entry><uri>/perfect/m1/test/art1/2.0.0-SNAPSHOT/path/to/file</uri></entry>
+                                <entry><filename>test/art1-2.0.0-20150104.101010-1</filename> <para>Since there are several versions matching 2.0.0-SNAPSHOT, the highest ranking snapshot
+                release will be used, which is identified by the specific snapshot version.</para> </entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Specific snapshot version 2.0.0-20150102.101010-1</entry>
+                                <entry><uri>/perfect/m1/test/art1/2.0.0-20150102.101010-1/path/to/file</uri></entry>
+                                <entry><filename>test/art1-2.0.0-20150102.101010-1</filename></entry>
+                            </row>
+                            
+                            <row>
+                                <entry>Specific snapshot version 2.0.0-20140101.101010-1</entry>
+                                <entry><uri>/perfect/m1/test/art1/2.0.0-20140101.101010-1/path/to/file</uri></entry>
+                                <entry>404 error since the requested artifact is no in the channel</entry>
+                            </row>
+                            
+                        </tbody>
+                        
+                    </tgroup>
+                </informaltable>
+                
+            </section>
+            
+       </section>
+       
+    </section>
+	
+</section>
