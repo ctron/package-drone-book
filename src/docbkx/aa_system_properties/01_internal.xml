@@ -9,6 +9,10 @@
 	This section describe the system properties which are defined by Package Drone itself.
 	</para>
 	
+	<para>
+	See also <link xlink:href="https://github.com/ctron/package-drone/wiki/System-Properties"/>
+	</para>
+	
 	<simplesect xreflabel="package.drone.admin.announce.file.notPosix">
 	   <title>package.drone.admin.announce.file.notPosix</title>
 	   
