@@ -25,7 +25,18 @@ hr {
 	background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
 	background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
 	background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
-	background-image: -o-linear-gradient(left, #ccc, #333, #ccc); }
+	background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+/* tag styles */
+
+.filename {
+    background-color: #F9F2F4;
+    color: #C7254E;
+    border-radius: 4px;
+    padding: 2px 3px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .funcsynopsis {

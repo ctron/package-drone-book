@@ -22,6 +22,9 @@
 	
 	<section xml:id="cfg_admin_user">
 	   <title>Login in with admin user</title>
+	   
+	   <indexterm><primary>Admin user</primary><secondary>Logging in</secondary></indexterm>
+	   
 	   <para>
 	   Initially Package Drone is not configured with any database. Therefore it also
 	   has no user accounts available. Instead of falling back to some publicly accessible
@@ -44,6 +47,9 @@
 	
 	<section>
 	   <title>Database</title>
+	   
+	   <indexterm><primary>Database</primary></indexterm>
+	   
 	   <para>
 	       Entering the database parameters should be straight forward when you have experience
 	       with databases and <acronym>JDBC</acronym>.
@@ -69,6 +75,9 @@
 	       Package Drone needs a mail server for the user registration process. The 
 	       mail server must be a server capable of SMTP. So it is not possible to
 	       use a <quote>maildrop</quote> setup.
+	       
+	       <indexterm><primary>Mail server</primary></indexterm>
+	       
 	   </para>
 	</section>
 	
