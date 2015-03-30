@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+	>
+
+	<title>Configuration</title>
+
+    <para>
+    In order to enable the file system store navigate to <guimenu>System</guimenu> <guimenuitem>Storage</guimenuitem>.
+    Enter a non-existing or empty directory into the location entry field and press the <guibutton>Convert</guibutton> button.
+    </para>
+    
+    <para>
+    The location entered has to be a non-existing or empty directory in the server where Package Drone is running. The Package Drone
+    process user (normally <filename>pdrone</filename>) requires write access in the parent directory if the directory does not
+    exists, and write permissions for the directory otherwise.
+    </para>
+    
+    <para>
+    Enabling the store will write this information to database and write out a simple marker file into the directory.
+    </para>
+	
+</section>

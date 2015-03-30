@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+	>
+
+	<title>Purpose &amp; history</title>
+	
+	<para>
+    One initial idea for Package Drone was to store the BLOBs in the database, together
+    with the entity information. Most modern database can store BLOBs efficiently
+    and the JDBC API does provide streaming access to BLOBs so that it is not required
+    that all BLOBs have to fit into the memory. This would not only simplify the
+    implementation, but also would simplify maintenance tasks like backup and restore.
+	</para>
+	
+	<para>
+	So much for the theory
+	<footnote>
+	<para>And please do not say <quote>I told you so</quote>, my colleague already did that.</para>
+	</footnote>
+	. The real world looks a bit different and both MySQL and
+	PostgreSQL do not implement the JDBC streaming correctly, to that in fact the BLOBs
+	do get stored in the main memory, at least temporarily. 
+	</para>
+	
+	<para>
+	While PostgreSQL can store a BLOB with streaming and only fails when reading the
+	BLOB again, MySQL already fails when writing the BLOB and totally explodes when
+	reading out the BLOB again. A BLOB gets encoded and parsed when the server
+	sends it to the client without any flow control, so the BLOB data is help in encoded
+	and decoded form at the same time, which make the 400MB grow to about 1.2GB. 
+	</para>
+	
+	<para>
+	In order not to make the file system storage mandatory and support migration to
+	the BLOB store from older versions, the store will act as an overlay to the
+	already existing database. If future JDBC driver versions will fix these issues,
+	it will still be possible to use the <quote>database only</quote> mode. Also could
+	it be possible to use other database like Oracle or DB/2 which are reported to work
+	much better in this area.
+	</para>
+	
+</section>

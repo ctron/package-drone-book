@@ -75,21 +75,47 @@
 	</section>
 	
 	<section>
-	   <title>System data</title>
+	   <title>Artifact data</title>
 	   
 	   <para>
-	   All data like artifacts, the artifact binary data, users, deploy keys, all this is
-	   stored in the database that is configured for the Package Drone instance.
-	   At the moment of writing (Version 0.2.4) there is no backup mechanism for this data.
-	   But since it is stored in a MySQL database, you can and should use
-	   the mechanisms provided by MySQL for backup up your database.
+	   As of Package Drone 0.5.0 there is a way to back up channels and artifacts. It is possible
+	   to export one or all channels and import them again.
 	   </para>
 	   
+	   <para>
+	   This mechanism does not export the full database, but only channels and stored
+	   <footnote><para>Virtual and generated artifacts are not backed up, but re-generated on the target server.</para></footnote>
+	    artifacts. This includes the aspect configuration of the channel and the provided
+	    metadata for channels and artifacts.
+	   </para>
+	   
+	   <para>
+	   The following properties will <emphasis>not</emphasis> be exported:
+	   <itemizedlist>
+	       <listitem><para>Deploy key assignments</para></listitem>
+	       <listitem><para>Extracted meta data</para></listitem>
+	       <listitem><para>Channel cache entries</para></listitem>
+	       <listitem><para>Virtual and generated artifacts</para></listitem>
+	       <listitem><para>Anything else like users, signers, …</para></listitem>
+	   </itemizedlist>
+	   </para>
+	   
+	</section>
+	
+	<section>
+	   <title>Other data</title>
+	   
+	   <para>
+	       Beside system configuration and artifact data there are a few additional entities stored
+	       in the database (users, deploy groups and key, …). This data can easily be backed up
+	       by simply backup up the database itself. 
+	   </para>
+	  	   
 	   <tip>
 	       <title>Database backup</title>
 	       <para>
-	       If you have a backup of your database, then you have the necessary data
-	       you need to re-create an instance of Package Drone.
+           If the file system <acronym>BLOB</acronym> store is disabled, then backing up the
+           database is all that is required in order to re-construct a Package Drone instance
 	       </para>
 	   </tip>
 	</section>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+	>
+
+	<title>Details</title>
+	
+	<para>
+	In order to understand the implications of using the file system store, here are
+	a few details.
+	</para>
+	
+	<section>
+	   <title>Storage</title>
+	
+	<para>
+	Right now there are 3 BLOB operations: create, read and delete. There is no way to
+	update a BLOB. This is made on purpose, since updating the artifact main data is
+	an operation so close to delete &amp; create, this the decision was made not to support
+	updating the artifact data, but to require deletion and re-creation of the entity. 
+	</para>
+	
+	<para>
+	All BLOB operations inside Package Drone are routed through a BLOB manager. This instance
+	decides which storage layer will be used for performing the operation. The default is
+	to simply pass the request to the database.
+	</para>
+	
+	<para>
+	When the BLOB store is activated, a new storage is created, a unique ID generated and
+	stored in both the database and the file system. The location of the store is also
+	stored in the file system. So on system startup it is possible to load the store location
+	and check if it matches to the expected store (using the ID).
+	</para>
+	
+	<para>
+	The create operation will then always go to the file system layer. BLOBs are stored in
+	hierarchy (currently 3) of prefix named directories in order to reduce the number of
+	files in a single directory. Their name is the artifact ID, assigned by the database
+	storage layer.
+	</para>
+	
+	<para>
+	If a BLOB is requested to be deleted the file will simply be deleted. Empty directories
+	will be kept. If the file does not exists, then nothing will be done. Also no error will
+	be reported, since it is possible the BLOB was stored in the database. In this case
+	there is nothing to do, since deleting the artifact will delete the row in the database
+	which holds the binary data then.
+	</para>
+	
+	<para>
+	When a BLOB is read then the manager will first check the file system. If there is a match,
+	if will be read from the file system. Otherwise the database will be used. This two step
+	approach will work for all cases where artifacts got created when the file system
+	layer was already activated and the second step is only required for <quote>legacy</quote>
+	entries, which are still stored in the database.
+	</para>
+	
+	</section>
+	
+	<section>
+	   <title>Concurrency and database transactions</title>
+	   
+	   <para>
+	   Since BLOBs cannot be updated the issue of concurrency is not that difficult.
+	   Also multiple concurrent readers is not a problem. And since all modifying operations
+	   are safe guarded by the storage server an a higher level, there is no additional locking
+	   required by the BLOB manager other than its internal structures.
+	   </para>
+	   
+	   <para>
+	   When it comes to database transactions the situation is a bit different. Package Drone
+	   <footnote>
+	   <para>At least the current, default, SQL based storage service</para>
+	   </footnote>
+	   makes use of database transactions in order to allow atomic operations on channels and
+	   artifacts. So if an channel extractor fails to extract meta data, the whole transaction
+	   is rolled back, and the original state still present.
+	   </para>
+	   
+	   <para>
+	   This conflicts with the file system storage in two scenarios. First, an artifact could
+	   have been created, but then the transaction is rolled back. An already stored artifact
+	   must then be deleted. This could be handled as a trivial situation. Since artifact IDs
+	   are based on random UUIDs, it would be possible to just leave the unreferenced artifact
+	   data and clean it up later. However the second case, deleting an artifact, is a bit more
+	   complicated. If the deletion of an artifact fails, then the artifact's BLOB must stay
+	   intact.
+	   </para>
+	   
+	   <para>
+	   One idea would be to use a transaction manager and implement the file system
+	   operations using some sort JTA operation. However adding a full blown JTA transaction manager
+	   to the existing OSGi based setup seemed like more trouble than it would solve.
+	   </para>
+	   
+	   <para>
+	   So instead a <quote>artifact delete queue</quote> was added as a database structure.
+	   When an artifact gets deleted, a deletion marker is stored in this table in the
+	   same database transaction as the artifact gets deleted. If the transaction goes through,
+	   then the artifact was successfully marked as deleted and directly after the commit, the
+	   queue will be processed and artifacts do get deleted from the file system.
+	   </para>
+	   
+	   <para>
+	   If a transaction gets rolled back during the creation phase of an artifact then this artifact
+	   ID (which is not in the database now) will get added to the queue in another database
+	   transaction, and gets deleted afterwards the same way.
+	   </para>
+	   
+	</section>
+	
+	<section>
+	   <title>Limitations</title>
+	   
+	   <para>
+	   Right now there are few limitations. As always with limitations, you are welcome
+	   to contribute ;-)
+	   </para>
+	   
+	   <para>
+	   Although the migration towards the file system store is easy, disabling the file
+	   system store is not. There is currently no simple way to do this. It is possible
+	   to export the data and re-import into a new instance of Package Drone.
+	   </para>
+	   
+	   <para>
+	   The same limitation is present for spooling out existing database BLOBs. These will
+	   <emphasis>not</emphasis> be spooled to the file system when the store is converted. If
+	   this is required then the channels and be exported and imported again after the
+	   file system store has been enabled. It is not required to create a new Package Drone
+	   instance for this. 
+	   </para>
+	   
+	   <note>
+	       <title>Backup</title>
+	       <para>
+	       When backing up the database, also the file system layer has to be backed up. Since
+	       the database will no longer hold the full set up BLOBs.
+	       </para>
+	   </note>
+	   
+	</section>
+	
+</section>

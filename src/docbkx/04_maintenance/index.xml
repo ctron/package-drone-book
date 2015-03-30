@@ -5,4 +5,11 @@
 
 	<title>Maintenance</title>
 	
+	<para>
+	This chapter describes Package Drone from the view of required system maintenance,
+	like backup and restore, cleanup of temporary data, etc…
+	</para>
+	
+	<xi:include href="01_backup_restore/index.xml"/>
+	<xi:include href="02_fs_blob/index.xml"/>
 </chapter>

@@ -120,3 +120,12 @@ div.tip tr:first-child > td:first-child {
 span.guisubmenu, span.guimenu, span.guimenuitem {
 	background-color: #F0F0F0;
 }
+
+span.guimenu + span.guisubmenu:before,
+span.guimenu + span.guimenuitem:before,
+span.guisubmenu + span.guisubmenu:before,
+span.guisubmenu + span.guimenuitem:before
+{
+	content: ' > ';
+	background-color: white;
+}
