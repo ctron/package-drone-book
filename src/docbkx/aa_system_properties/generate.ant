@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="properties" default="default">
+    <target name="default">
+        <xslt style="properties.xsl" in="properties.xml" out="01_internal.xml" force="true">
+        </xslt>
+    </target>
+</project>

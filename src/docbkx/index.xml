@@ -19,7 +19,7 @@
 
 		<authorgroup>
 			<author>
-				<personname>
+			 	<personname>
 					<firstname>Jens</firstname>
 					<surname>Reimann</surname>
 				</personname>
@@ -29,6 +29,7 @@
 					</org>
 				</affiliation>
 				<email>ctron@dentrassi.de</email>
+				<uri type="homepage">http://dentrassi.de</uri>
 			</author>
 		</authorgroup>
 
@@ -71,7 +72,8 @@
 		<title>References</title>
 		<xi:include href="aa_system_properties/index.xml" />
 	</appendix>
-
+    
 	<xi:include href="legal.xml" />
-
+	
+    <index />
 </book> 

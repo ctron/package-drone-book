@@ -1,43 +1,219 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
-	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd">
-
-	<title>Internal System Properties</title>
-	
-	<para>
-	This section describe the system properties which are defined by Package Drone itself.
-	</para>
-	
-	<para>
-	See also <link xlink:href="https://github.com/ctron/package-drone/wiki/System-Properties"/>
-	</para>
-	
-	<simplesect xreflabel="package.drone.admin.announce.file.notPosix">
-	   <title>package.drone.admin.announce.file.notPosix</title>
-	   
-	   <para>
-	       Disable setting <acronym>POSIX</acronym> file permissions on the admin token file.
-	   </para>
-	   
-	   <variablelist>
-	       <varlistentry>
-	           <term>Type</term>
-	           <listitem><para>boolean</para></listitem>
-	       </varlistentry>
-	       <varlistentry>
-               <term>Default value</term>
-               <listitem><para>false</para></listitem>
-           </varlistentry>
-	   </variablelist>
-	   
-	   <para>
-	   By default the admin token file will be written so that only the Package Drone user can
-	   read this file. However this is only supported on system which support POSIX file
-	   permissions in Java. If this causes problems for you setup, then you can disable this
-	   behavior by setting the value to <code>false</code>.
-	   </para>
-	   
-	</simplesect>
-	
+<?xml version="1.0" encoding="UTF-8"?><section xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:sp="urn:java:systemProperties" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<title>Internal System Properties</title>
+<para>
+		    This section describe the system properties which are defined by Package Drone itself.
+		    </para>
+<para>
+		    See also <link xlink:href="https://github.com/ctron/package-drone/wiki/System-Properties"/>
+</para>
+<variablelist>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_drone.showStackTrace"/>
+</property> [boolean] = <constant>false</constant>
+</term>
+<listitem>
+<para>Show stack traces in error web pages.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_drone.web.fileThresholdBytes"/>
+</property> [long] = <constant>1MB</constant>
+</term>
+<listitem>
+<para>The number of bytes after which the servlet will spool out the request as a file, everything below this threshold will be kept in-memory.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_drone.web.maxRequestBytes"/>
+</property> [long] = <constant>1GB</constant>
+</term>
+<listitem>
+<para>The number of bytes the main dispatcher servlet will accept for a multi part rquest.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_package.drone.admin.announce.file"/>
+</property> [String] = <constant>~/.drone-admin-token</constant>
+</term>
+<listitem>
+<para>The name of the file were the admin token will be written. The directory has to exist and the file will be overwritten on every start.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_package.drone.admin.announce.file.notPosix"/>
+</property> [boolean] = <constant>false</constant>
+</term>
+<listitem>
+<para>
+            Disable setting <acronym xmlns:p="urn:java:systemProperties" xmlns:db="http://docbook.org/ns/docbook">POSIX</acronym> file permissions on the admin token file.
+        </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_package.drone.admin.disabled"/>
+</property> [boolean] = <constant>false</constant>
+</term>
+<listitem>
+<para>Disable the admin user altogether.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<property>
+<xref linkend="property_package.drone.admin.user"/>
+</property> [String] = <constant>admin</constant>
+</term>
+<listitem>
+<para>The name of the admin user.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<section xreflabel="drone.showStackTrace" xml:id="property_drone.showStackTrace">
+<title>drone.showStackTrace</title>
+<para>Show stack traces in error web pages.</para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>boolean</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>false</para>
+</listitem>
+</varlistentry>
+</variablelist>
+            <para xmlns:p="urn:java:systemProperties" xmlns:db="http://docbook.org/ns/docbook">Standard error pages will not show a stack trace unless this parameter is set to <code>true</code>.</para>
+            <para xmlns:p="urn:java:systemProperties" xmlns:db="http://docbook.org/ns/docbook">This parameter may be changed during runtime.</para>    
+        </section>
+<section xreflabel="drone.web.fileThresholdBytes" xml:id="property_drone.web.fileThresholdBytes">
+<title>drone.web.fileThresholdBytes</title>
+<para>The number of bytes after which the servlet will spool out the request as a file, everything below this threshold will be kept in-memory.</para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>long</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>1MB</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xreflabel="drone.web.maxRequestBytes" xml:id="property_drone.web.maxRequestBytes">
+<title>drone.web.maxRequestBytes</title>
+<para>The number of bytes the main dispatcher servlet will accept for a multi part rquest.</para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>long</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>1GB</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xreflabel="package.drone.admin.announce.file" xml:id="property_package.drone.admin.announce.file">
+<title>package.drone.admin.announce.file</title>
+<para>The name of the file were the admin token will be written. The directory has to exist and the file will be overwritten on every start.</para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>String</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>~/.drone-admin-token</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xreflabel="package.drone.admin.announce.file.notPosix" xml:id="property_package.drone.admin.announce.file.notPosix">
+<title>package.drone.admin.announce.file.notPosix</title>
+<para>
+            Disable setting <acronym xmlns:p="urn:java:systemProperties" xmlns:db="http://docbook.org/ns/docbook">POSIX</acronym> file permissions on the admin token file.
+        </para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>boolean</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>false</para>
+</listitem>
+</varlistentry>
+</variablelist>
+			<para xmlns:p="urn:java:systemProperties" xmlns:db="http://docbook.org/ns/docbook">
+			By default the admin token file will be written so that only the Package Drone user can
+			read this file. However this is only supported on system which support POSIX file
+			permissions in Java. If this causes problems for you setup, then you can disable this
+			behavior by setting the value to <code>false</code>.
+			</para>
+        </section>
+<section xreflabel="package.drone.admin.disabled" xml:id="property_package.drone.admin.disabled">
+<title>package.drone.admin.disabled</title>
+<para>Disable the admin user altogether.</para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>boolean</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>false</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xreflabel="package.drone.admin.user" xml:id="property_package.drone.admin.user">
+<title>package.drone.admin.user</title>
+<para>The name of the admin user.</para>
+<variablelist>
+<varlistentry>
+<term>Value Type</term>
+<listitem>
+<para>String</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Default value</term>
+<listitem>
+<para>admin</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
 </section>

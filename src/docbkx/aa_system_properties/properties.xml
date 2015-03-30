@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:properties
+    xmlns:p="urn:java:systemProperties"
+    xmlns:db="http://docbook.org/ns/docbook"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+    >
+
+    <p:property
+        id="package.drone.admin.announce.file.notPosix"
+        type="boolean"
+        default="false">
+        <p:short>
+            Disable setting <acronym>POSIX</acronym> file permissions on the admin token file.
+        </p:short>
+        <p:description>
+			<para>
+			By default the admin token file will be written so that only the Package Drone user can
+			read this file. However this is only supported on system which support POSIX file
+			permissions in Java. If this causes problems for you setup, then you can disable this
+			behavior by setting the value to <code>false</code>.
+			</para>
+        </p:description>
+    </p:property>
+    
+    <p:property
+        id="package.drone.admin.user"
+        type="String"
+        default="admin"
+        >
+        <p:short>The name of the admin user.</p:short>
+    </p:property>
+    
+    <p:property
+        id="package.drone.admin.disabled"
+        type="boolean"
+        default="false"
+        >
+        <p:short>Disable the admin user altogether.</p:short>
+    </p:property>
+    
+    <p:property
+        id="package.drone.admin.announce.file"
+        type="String"
+        default="~/.drone-admin-token"
+        >
+        <p:short>The name of the file were the admin token will be written. The directory has to exist and the file will be overwritten on every start.</p:short>
+    </p:property>
+    
+    <p:property
+        id="drone.web.maxRequestBytes"
+        type="long"
+        default="1GB"
+        >
+        <p:short>The number of bytes the main dispatcher servlet will accept for a multi part rquest.</p:short>
+    </p:property>
+    
+    <p:property
+        id="drone.web.fileThresholdBytes"
+        type="long"
+        default="1MB"
+        >
+        <p:short>The number of bytes after which the servlet will spool out the request as a file, everything below this threshold will be kept in-memory.</p:short>
+    </p:property>
+    
+    <p:property
+        id="drone.showStackTrace"
+        type="boolean"
+        default="false"
+        >
+        <p:short>Show stack traces in error web pages.</p:short>
+        
+        <p:description>
+            <para>Standard error pages will not show a stack trace unless this parameter is set to <code>true</code>.</para>
+            <para>This parameter may be changed during runtime.</para>    
+        </p:description>
+    </p:property>
+
+</p:properties>

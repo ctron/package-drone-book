@@ -6,6 +6,14 @@
 
 	<title>Configuration</title>
 
+    <section>
+        <title>Enable</title>
+        
+        <indexterm>
+            <primary>File system store</primary>
+            <secondary>Activate</secondary>
+        </indexterm>
+
     <para>
     In order to enable the file system store navigate to <guimenu>System</guimenu> <guimenuitem>Storage</guimenuitem>.
     Enter a non-existing or empty directory into the location entry field and press the <guibutton>Convert</guibutton> button.
@@ -18,7 +26,40 @@
     </para>
     
     <para>
-    Enabling the store will write this information to database and write out a simple marker file into the directory.
+        <indexterm><primary>File system store</primary><secondary>ID</secondary></indexterm>
+    Enabling the store will write this state to database and write out a simple marker file into the directory. Part of this state
+    is a unqiue ID which links the database with the file system store. This is used by operations to verify that the database matches
+    the file system location.
     </para>
+
+    </section>
+
+
+    <section>
+        <title>Re-locate</title>
+        
+        <indexterm>
+            <primary>File system store</primary>
+            <secondary>Re-locate</secondary>
+        </indexterm>
+        
+    <para>
+        Sometimes it might be necessary to re-locate the directory of the file store. This can be achieved by shutting down Package Drone,
+        moving the full directory structure, starting up Package Drone and using the <quote>re-locate</quote> operation
+        from <guimenu>System</guimenu> <guimenuitem>Storage</guimenuitem>. After the file storage has been initialized the
+        button will change from <guibutton>Convert</guibutton> to <guibutton>Re-locate</guibutton>.
+    </para>
+    
+    <para>
+        <indexterm><primary>File system store</primary><secondary>ID</secondary></indexterm>
+        
+        Change the location field to point to the correct, new, directory and press <guibutton>Re-locate</guibutton>. The system
+        will check if the target directory contains the correct file system store (based on the ID). If not, the operation will
+        fail and the new location <emphasis>will not</emphasis> be store in the database. Otherwise the database information
+        will be updated with the new storage location and the store is active again.
+    </para>
+        
+    </section>    
+    
 	
 </section>

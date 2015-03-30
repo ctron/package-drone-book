@@ -1,9 +1,31 @@
 html {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: sans-serif;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 div.section > p, dl, ol, ul {
 	margin-left: 2em;
+}
+
+.authorgroup,
+.copyright,
+.legalnotice {
+	margin-left: 2em;
+}
+
+.copyright, .legalnotice {
+	font-size: small;
+}
+
+hr {
+	border: 0;
+	height: 1pt;
+	background: #333;
+	background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+	background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+	background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+	background-image: -o-linear-gradient(left, #ccc, #333, #ccc); }
 }
 
 .funcsynopsis {

@@ -28,6 +28,7 @@
 	</para>
 	
 	<para>
+	   <indexterm><primary>File system store</primary><secondary>ID</secondary></indexterm>
 	When the BLOB store is activated, a new storage is created, a unique ID generated and
 	stored in both the database and the file system. The location of the store is also
 	stored in the file system. So on system startup it is possible to load the store location
@@ -132,6 +133,8 @@
 	   file system store has been enabled. It is not required to create a new Package Drone
 	   instance for this. 
 	   </para>
+	   
+	   <indexterm><primary>File system store</primary><secondary>Backup</secondary></indexterm>
 	   
 	   <note>
 	       <title>Backup</title>

@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <section xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
-	xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
-	xml:id="fs_blob"
-	>
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+    xml:id="fs_blob"
+    >
 
-	<title>File system <acronym>BLOB</acronym> store</title>
-	
-	<para>
-	This section describes the file system BLOB store. It acts as an overlay to the
-	database in order to store BLOBs more efficiently than the underlying database.
-	</para>
-	
-	<para>
-	Also see the wiki at <link xlink:href="https://github.com/ctron/package-drone/wiki/File-system-BLOB-store" />
-	</para>
-	
+    <title>File system <acronym>BLOB</acronym> store</title>
+    
+    <indexterm class="startofrange" xml:id="idx.fs_blob">
+       <primary>File system store</primary>
+    </indexterm>
+    
+    <para>
+    This section describes the file system BLOB store. It acts as an overlay to the
+    database in order to store BLOBs more efficiently than the underlying database.
+    </para>
+    
+    <para>
+    Also see the wiki at <link xlink:href="https://github.com/ctron/package-drone/wiki/File-system-BLOB-store" />
+    </para>
+    
     <xi:include href="01_purpose.xml"/>
     <xi:include href="02_details.xml"/>
     <xi:include href="03_config.xml"/>
-	
+    
+    <indexterm class="endofrange" startref="idx.fs_blob"/>
+    
 </section>

@@ -17,6 +17,27 @@
 
 	<build>
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>generate-with-xsl</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+				    <target>
+					   <ant antfile="generate.ant" />
+					</target>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -92,13 +113,13 @@
 										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
-                                <resource>
-                                    <directory>src/resources/common-web</directory>
-                                    <excludes>
-                                        <exclude>**/.*</exclude>
-                                        <exclude>**/*.odg</exclude>
-                                    </excludes>
-                                </resource>
+								<resource>
+									<directory>src/resources/common-web</directory>
+									<excludes>
+										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
+									</excludes>
+								</resource>
 								<resource>
 									<directory>src/resources/html</directory>
 									<excludes>
@@ -218,8 +239,8 @@
 								<resource>
 									<directory>src/resources/epub3</directory>
 									<excludes>
-									   <exclude>**/.*</exclude>
-									   <exclude>**/*.odg</exclude>
+										<exclude>**/.*</exclude>
+										<exclude>**/*.odg</exclude>
 									</excludes>
 								</resource>
 							</resources>
@@ -306,7 +327,7 @@
 	</build>
 
 	<profiles>
-    	<profile>
+		<profile>
 			<id>pdrone.book.upload</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>

@@ -6,6 +6,11 @@
 
 	<title>Purpose &amp; history</title>
 	
+	<indexterm>
+	   <primary>File system store</primary>
+	   <secondary>Reason</secondary>
+	</indexterm>
+	
 	<para>
     One initial idea for Package Drone was to store the BLOBs in the database, together
     with the entity information. Most modern database can store BLOBs efficiently

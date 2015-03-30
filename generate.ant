@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Generate content for the book                                                       
+     ====================================================================== -->
+<project name="project" default="default">
+    <description>
+            Generate content for the book
+    </description>
+
+    <path id="saxon9.jar">
+    	   <path location="../lib/saxon9he.jar"/>
+	</path>
+	
+    <!-- ================================= 
+          target: default
+         ================================= -->
+    <target name="default" >
+        <ant dir="src/docbkx/aa_system_properties" antfile="generate.ant" inheritrefs="true"/>
+    </target>
+	
+</project>
