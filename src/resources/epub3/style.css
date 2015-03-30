@@ -6,6 +6,15 @@ span.term {
 	font-family: Courier, Courier New, monospace; 
 }
 
+/* epub */
+
+
+div.tip,
+div.warning,
+div.note {
+	page-break-inside: avoid;
+} 
+
 /* table */
 
 .table-contents table {
